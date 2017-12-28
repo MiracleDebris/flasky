@@ -1,6 +1,12 @@
 #!venv/bin/python
 import os
 
+if os.path.exists('.env'):
+    for line in open('.env'):
+        var = line.strip().split('=')
+        if len(var) == 2:
+            os.environ[var[0]] = var[1]
+
 # 覆盖检测
 COV = None
 if os.environ.get('FLASK_COVERAGE'):
